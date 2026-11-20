@@ -1,0 +1,79 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CreateDedicatedProjectBucket",
+      "Effect": "Allow",
+      "Action": "s3:CreateBucket",
+      "Resource": "arn:aws:s3:::project18-gitops-demo-yashpandey20-590507089733",
+      "Condition": {
+        "StringEquals": {
+          "s3:LocationConstraint": "ap-south-1"
+        }
+      }
+    },
+    {
+      "Sid": "ProjectBucketList",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation",
+        "s3:GetBucketVersioning",
+        "s3:GetEncryptionConfiguration",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:GetBucketTagging"
+      ],
+      "Resource": "arn:aws:s3:::project18-gitops-demo-yashpandey20-590507089733"
+    },
+    {
+      "Sid": "ProjectBucketObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::project18-gitops-demo-yashpandey20-590507089733/*"
+    },
+    {
+      "Sid": "ProjectBucketConfiguration",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutBucketVersioning",
+        "s3:PutEncryptionConfiguration",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:DeleteBucketPublicAccessBlock",
+        "s3:PutBucketTagging",
+        "s3:DeleteBucketTagging"
+      ],
+      "Resource": "arn:aws:s3:::project18-gitops-demo-yashpandey20-590507089733"
+    },
+    {
+      "Sid": "TerraformStateObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::project18-tfstate-590507089733-1795182108/project18/yashpandey20/*"
+    },
+    {
+      "Sid": "TerraformStateBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketVersioning",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "arn:aws:s3:::project18-tfstate-590507089733-1795182108"
+    },
+    {
+      "Sid": "AWSIdentity",
+      "Effect": "Allow",
+      "Action": "sts:GetCallerIdentity",
+      "Resource": "*"
+    }
+  ]
+}
+
